@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Capsule | Messages to Your Future Self</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Quicksand:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <!-- Bubble Background -->
+    <div class="bubbles">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+
+    <div class="container">
+      <header>
+        <h1>Time Capsule</h1>
+        <p class="subtitle">
+          Write messages to your future self and reflect on your journey through
+          time
+        </p>
+      </header>
+
+      <div class="app-container">
+        <div class="main-content">
+          <!-- Create Message Card -->
+          <div class="card">
+            <h2 class="card-title">
+              <i class="fas fa-feather-alt"></i> Write to Your Future Self
+            </h2>
+            <div class="form-group">
+              <label>How are you feeling today?</label>
+              <div class="mood-selector">
+                <span class="mood-option" data-mood="😊">😊</span>
+                <span class="mood-option" data-mood="😢">😢</span>
+                <span class="mood-option" data-mood="😍">😍</span>
+                <span class="mood-option" data-mood="😠">😠</span>
+                <span class="mood-option" data-mood="😴">😴</span>
+                <span class="mood-option" data-mood="🤩">🤩</span>
+                <span class="mood-option" data-mood="🤔">🤔</span>
+                <span class="mood-option" data-mood="😎">😎</span>
+              </div>
+
+              <div class="additional-moods" id="additionalMoods">
+                <span class="additional-mood" data-mood="🥳">🥳</span>
+                <span class="additional-mood" data-mood="🥰">🥰</span>
+                <span class="additional-mood" data-mood="🤪">🤪</span>
+                <span class="additional-mood" data-mood="😇">😇</span>
+                <span class="additional-mood" data-mood="🥺">🥺</span>
+                <span class="additional-mood" data-mood="😤">😤</span>
+                <span class="additional-mood" data-mood="🤯">🤯</span>
+                <span class="additional-mood" data-mood="🥶">🥶</span>
+                <span class="additional-mood" data-mood="😱">😱</span>
+                <span class="additional-mood" data-mood="😭">😭</span>
+                <span class="additional-mood" data-mood="🤮">🤮</span>
+                <span class="additional-mood" data-mood="🤧">🤧</span>
+                <span class="additional-mood" data-mood="🤠">🤠</span>
+                <span class="additional-mood" data-mood="🥸">🥸</span>
+                <span class="additional-mood" data-mood="🥷">🥷</span>
+                <span class="additional-mood" data-mood="👨‍🚀">👨‍🚀</span>
+                <span class="additional-mood" data-mood="🧚‍♀️">🧚‍♀️</span>
+                <span class="additional-mood" data-mood="🧜‍♂️">🧜‍♂️</span>
+                <span class="additional-mood" data-mood="🧞‍♀️">🧞‍♀️</span>
+                <span class="additional-mood" data-mood="🧛‍♂️">🧛‍♂️</span>
+              </div>
+
+              <div class="show-more-moods">
+                <button id="toggleMoods">Show More Emotions</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea
+                id="message"
+                placeholder="Write something meaningful to your future self..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="deliveryDate"
+                >Deliver on (1 day - 5 years from now)</label
+              >
+              <input type="date" id="deliveryDate" min="" max="" />
+            </div>
+
+            <div class="form-group">
+              <div class="password-group">
+                <input type="checkbox" id="protectMessage" />
+                <label for="protectMessage"
+                  >Protect with password (optional)</label
+                >
+              </div>
+              <input
+                type="password"
+                id="password"
+                class="password-input"
+                placeholder="Set password for this message"
+              />
+            </div>
+
+            <button id="saveMessage" class="btn btn-full">
+              <i class="fas fa-paper-plane"></i> Send to Future
+            </button>
+          </div>
+
+          <!-- Messages Section with Tabs -->
+          <div class="card">
+            <div class="tabs">
+              <div class="tab active" data-tab="pending">Pending Messages</div>
+              <div class="tab" data-tab="delivered">Delivered Messages</div>
+              <div class="tab" data-tab="all">All Messages</div>
+            </div>
+
+            <div class="tab-content active" id="pendingTab">
+              <div class="messages-container" id="pendingMessages">
+                <!-- Pending messages will be inserted here -->
+              </div>
+            </div>
+
+            <div class="tab-content" id="deliveredTab">
+              <div class="messages-container" id="deliveredMessages">
+                <!-- Delivered messages will be inserted here -->
+              </div>
+            </div>
+
+            <div class="tab-content" id="allTab">
+              <div class="search-filter">
+                <input
+                  type="text"
+                  id="searchMessages"
+                  placeholder="Search messages..."
+                />
+                <select id="filterMood">
+                  <option value="">All Moods</option>
+                  <option value="😊">😊 Happy</option>
+                  <option value="😢">😢 Sad</option>
+                  <option value="😍">😍 In Love</option>
+                  <option value="😠">😠 Angry</option>
+                  <option value="😴">😴 Tired</option>
+                  <option value="🤩">🤩 Excited</option>
+                  <option value="🤔">🤔 Thoughtful</option>
+                  <option value="😎">😎 Confident</option>
+                  <option value="🥳">🥳 Celebrating</option>
+                  <option value="🥰">🥰 Loving</option>
+                  <option value="🤪">🤪 Silly</option>
+                  <option value="😇">😇 Peaceful</option>
+                </select>
+              </div>
+              <div class="messages-container" id="allMessages">
+                <!-- All messages will be inserted here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <!-- Daily Prompt -->
+          <div class="card">
+            <h2 class="card-title">
+              <i class="fas fa-lightbulb"></i> Daily Reflection
+            </h2>
+            <div class="prompt-container">
+              <div class="prompt-text" id="dailyPrompt">
+                What are you grateful for today?
+              </div>
+              <div class="prompt-actions">
+                <button class="btn btn-secondary" id="newPrompt">
+                  <i class="fas fa-sync-alt"></i> New Prompt
+                </button>
+                <button class="btn" id="usePrompt">
+                  <i class="fas fa-feather"></i> Use This
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mood Timeline -->
+          <div class="card">
+            <h2 class="card-title">
+              <i class="fas fa-heart"></i> Mood Timeline
+            </h2>
+            <div class="timeline" id="moodTimeline">
+              <!-- Timeline items will be inserted here -->
+            </div>
+          </div>
+
+          <!-- Stats and Badges -->
+          <div class="card">
+            <h2 class="card-title">
+              <i class="fas fa-trophy"></i> Your Journey
+            </h2>
+
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="progress-text" id="progressText">
+                0% of your journey completed
+              </div>
+            </div>
+
+            <div class="stats-container">
+              <div class="stat-card">
+                <div class="stat-value" id="messageCount">0</div>
+                <div class="stat-label">Messages</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value" id="streakCount">0</div>
+                <div class="stat-label">Day Streak</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value" id="deliveredCount">0</div>
+                <div class="stat-label">Delivered</div>
+              </div>
+            </div>
+
+            <h3 style="margin: 20px 0 10px; font-size: 1.2rem">
+              Reflection Badges
+            </h3>
+            <div class="badges-container" id="badgesContainer">
+              <!-- Badges will be inserted here -->
+            </div>
+          </div>
+
+          <!-- Export Button -->
+          <div class="card">
+            <button class="btn btn-full" id="exportBtn">
+              <i class="fas fa-download"></i> Export Messages
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      <div class="notification-content">
+        <div class="notification-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-message" id="notificationMessage">
+          Message saved successfully!
+        </div>
+        <button class="notification-close" id="notificationClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Notification Badge -->
+    <div
+      class="notification-badge"
+      id="notificationBadge"
+      style="display: none"
+    >
+      <div class="notification-badge-header">
+        <div class="notification-badge-title">Time Capsule Delivered!</div>
+        <button class="notification-badge-close" id="notificationBadgeClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="notification-badge-content" id="notificationBadgeContent">
+        Your message from the past is ready to be read!
+      </div>
+      <div class="notification-badge-actions">
+        <button
+          class="notification-badge-btn notification-badge-view"
+          id="viewMessageBtn"
+        >
+          View Message
+        </button>
+        <button
+          class="notification-badge-btn notification-badge-dismiss"
+          id="dismissNotificationBtn"
+        >
+          Dismiss
+        </button>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <h3><i class="fas fa-exclamation-circle"></i> Delete Message</h3>
+        <p>
+          Are you sure you want to delete this message? This action cannot be
+          undone.
+        </p>
+        <div class="modal-buttons">
+          <button id="cancelDelete" class="btn btn-secondary">Cancel</button>
+          <button id="confirmDelete" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
